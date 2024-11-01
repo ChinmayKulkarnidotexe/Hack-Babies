@@ -74,8 +74,10 @@
           <ul>
             <li><a href="index.html#hero" class="active">Home</a></li>
             <li><a href="index.html#about">About</a></li>
-            <li><a href="index.html#services">Services</a></li>
+            <li><a href="index.html#services">Features</a></li>
             <li><a href="index.html#team">Team</a></li>
+            <!--
+              We dont need a dropdown menu
             <li class="dropdown">
               <a href="#"
                 ><span>Dropdown</span>
@@ -100,7 +102,7 @@
                 <li><a href="#">Dropdown 3</a></li>
                 <li><a href="#">Dropdown 4</a></li>
               </ul>
-            </li>
+            </li>-->
             <li><a href="index.html#contact">Contact</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -114,7 +116,7 @@
       <!-- Hero Section -->
       <section id="hero" class="hero section dark-background">
         <img
-          src="{% static 'assets/img/constitution-of-india-2.jpg'%}"
+          src="{% static 'assets/img/constitution-of-india-3.jpg'%}"
           alt=""
           data-aos="fade-in"
         />
@@ -137,7 +139,7 @@
                 class="php-email-form"
               >
                 <div class="sign-up-form">
-                  <input type="email" name="email" /><input
+                  <input type="search" name="search" /><input
                     type="submit"
                     value="Search"
                   />
@@ -360,144 +362,12 @@
       </section>
       <!-- /Stats Section -->
 
-      <!-- Services Section -->
+    
+      <!-- Removed Services Section, we can keep features section maybe-->
+      <!--But that features button in navmenu gets highlighted in services section only so wrapped features section into services section-->
+      <!--We'll figure out how to fix it later...-->
       <section id="services" class="services section">
-        <!-- Section Title -->
-        <div class="container section-title" data-aos="fade-up">
-          <h2>Services</h2>
-          <p>
-            Necessitatibus eius consequatur ex aliquid fuga eum quidem sint
-            consectetur velit
-          </p>
-        </div>
-        <!-- End Section Title -->
-
-        <div class="container">
-          <div class="row gy-4">
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-              <div class="service-item d-flex">
-                <div class="icon flex-shrink-0">
-                  <i class="bi bi-briefcase"></i>
-                </div>
-                <div>
-                  <h4 class="title">
-                    <a href="services-details.html" class="stretched-link"
-                      >Lorem Ipsum</a
-                    >
-                  </h4>
-                  <p class="description">
-                    Voluptatum deleniti atque corrupti quos dolores et quas
-                    molestias excepturi sint occaecati cupiditate non provident
-                  </p>
-                </div>
-              </div>
-            </div>
-            <!-- End Service Item -->
-
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-              <div class="service-item d-flex">
-                <div class="icon flex-shrink-0">
-                  <i class="bi bi-card-checklist"></i>
-                </div>
-                <div>
-                  <h4 class="title">
-                    <a href="services-details.html" class="stretched-link"
-                      >Dolor Sitema</a
-                    >
-                  </h4>
-                  <p class="description">
-                    Minim veniam, quis nostrud exercitation ullamco laboris nisi
-                    ut aliquip ex ea commodo consequat tarad limino ata
-                  </p>
-                </div>
-              </div>
-            </div>
-            <!-- End Service Item -->
-
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
-              <div class="service-item d-flex">
-                <div class="icon flex-shrink-0">
-                  <i class="bi bi-bar-chart"></i>
-                </div>
-                <div>
-                  <h4 class="title">
-                    <a href="services-details.html" class="stretched-link"
-                      >Sed ut perspiciatis</a
-                    >
-                  </h4>
-                  <p class="description">
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur
-                  </p>
-                </div>
-              </div>
-            </div>
-            <!-- End Service Item -->
-
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
-              <div class="service-item d-flex">
-                <div class="icon flex-shrink-0">
-                  <i class="bi bi-binoculars"></i>
-                </div>
-                <div>
-                  <h4 class="title">
-                    <a href="services-details.html" class="stretched-link"
-                      >Magni Dolores</a
-                    >
-                  </h4>
-                  <p class="description">
-                    Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum
-                  </p>
-                </div>
-              </div>
-            </div>
-            <!-- End Service Item -->
-
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="500">
-              <div class="service-item d-flex">
-                <div class="icon flex-shrink-0">
-                  <i class="bi bi-brightness-high"></i>
-                </div>
-                <div>
-                  <h4 class="title">
-                    <a href="services-details.html" class="stretched-link"
-                      >Nemo Enim</a
-                    >
-                  </h4>
-                  <p class="description">
-                    At vero eos et accusamus et iusto odio dignissimos ducimus
-                    qui blanditiis praesentium voluptatum deleniti atque
-                  </p>
-                </div>
-              </div>
-            </div>
-            <!-- End Service Item -->
-
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="600">
-              <div class="service-item d-flex">
-                <div class="icon flex-shrink-0">
-                  <i class="bi bi-calendar4-week"></i>
-                </div>
-                <div>
-                  <h4 class="title">
-                    <a href="services-details.html" class="stretched-link"
-                      >Eiusmod Tempor</a
-                    >
-                  </h4>
-                  <p class="description">
-                    Et harum quidem rerum facilis est et expedita distinctio.
-                    Nam libero tempore, cum soluta nobis est eligendi
-                  </p>
-                </div>
-              </div>
-            </div>
-            <!-- End Service Item -->
-          </div>
-        </div>
-      </section>
-      <!-- /Services Section -->
-
+      
       <!-- Features Section -->
       <section id="features" class="features section">
         <!-- Section Title -->
@@ -602,7 +472,7 @@
         </div>
       </section>
       <!-- /Features Section -->
-
+    </section>
       {% comment %}
       <!-- Portfolio Section -->
       <section id="portfolio" class="portfolio section">
