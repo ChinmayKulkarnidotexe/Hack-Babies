@@ -15,4 +15,5 @@ def index(request):
 #     return render(request, 'counter.html', {'amount': amount_of_words})
 
 def search_page(request):
+    #text = request.POST['text']
     return render(request, 'search-page.html')
