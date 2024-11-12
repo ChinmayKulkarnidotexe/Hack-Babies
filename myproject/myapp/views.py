@@ -9,7 +9,10 @@ def index(request):
     }
     return render(request, 'index.html', content)
 
-def counter(request):
-    text = request.POST['text']
-    amount_of_words = len(text.split())
-    return render(request, 'counter.html', {'amount': amount_of_words})
+# def counter(request):
+#     text = request.POST['text']
+#     amount_of_words = len(text.split())
+#     return render(request, 'counter.html', {'amount': amount_of_words})
+
+def search_page(request):
+    return render(request, 'search-page.html')
