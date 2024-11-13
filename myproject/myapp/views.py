@@ -3,17 +3,8 @@ from django.http import HttpResponse
 
 # Create your views here.
 def index(request):
-    content = {
-        'name': 'Abhinav',
-        'age': '18'
-    }
-    return render(request, 'index.html', content)
+    return render(request, 'index.html')
 
-# def counter(request):
-#     text = request.POST['text']
-#     amount_of_words = len(text.split())
-#     return render(request, 'counter.html', {'amount': amount_of_words})
-
-def search_page(request):
-    #text = request.POST['text']
-    return render(request, 'search-page.html')
+def search(request):
+    
+    return HttpResponse("This is search")
