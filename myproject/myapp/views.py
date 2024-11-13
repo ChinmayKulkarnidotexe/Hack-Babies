@@ -7,4 +7,4 @@ def index(request):
 
 def search(request):
     
-    return HttpResponse("This is search")
+    return render(request, 'search.html')
