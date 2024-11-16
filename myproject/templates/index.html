@@ -109,7 +109,12 @@
               <form method="POST" action="{% url 'search' %}">
                 {% csrf_token %}
                 <div class="sign-up-form">
-                  <input type="search" name="search" id="search" placeholder="Search your query here..." />
+                  <input
+                    type="search"
+                    name="searched"
+                    id="searched"
+                    placeholder="Search your query here..."
+                  />
                   <input type="submit" value="Search" />
                 </div>
               </form>
