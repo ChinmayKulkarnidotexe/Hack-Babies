@@ -6,5 +6,6 @@ def index(request):
     return render(request, 'index.html')
 
 def search(request):
-    
-    return render(request, 'search.html')
+    query = request.POST.get('search')
+    #print("Search Query:", query)
+    return render(request, 'search.html',{'query': query})
