@@ -1020,7 +1020,7 @@ section,
   overflow: hidden;
   box-shadow: 5px 10px 50px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  transition: max-height 1.6s ease-out;
+  transition: max-height 3s ease-out;
   margin: 5px auto 10px auto;
   padding: 2px;
   font-family: var(--default-font);
@@ -1030,7 +1030,7 @@ section,
 }
 
 .search-item-box.expanded{
-  max-height: 250px; 
+  max-height: 1000px; 
   
 }
 

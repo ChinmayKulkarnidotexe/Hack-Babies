@@ -118,10 +118,7 @@
     </main>
     {% if raw_searched %} {% for law in laws %} {% if forloop.first %}
     <div
-      class="search-item-container-main"
-      data-aos="fade-up"
-      data-aos-delay="100"
-    >
+      class="search-item-container-main" data-aos="fade-down" data-aos-offset="0" data-aos-duration="500" >
       <div class="search-item-box" onclick="toggleExpand(this)">
         <ul>
           {% if law.law_name == 'Article 0' %}
@@ -136,7 +133,7 @@
       </div>
     </div>
     {% else %} {% if law.law_name != 'Article 0' %}
-    <div class="search-item-container" data-aos="fade-up" data-aos-delay="100">
+    <div class="search-item-container" data-aos="fade-down" data-aos-offset="0" data-aos-duration="500">
       <div class="search-item-box" onclick="toggleExpand(this)">
         <ul>
           <h3>{{ law.law_name }}</h3>
@@ -146,7 +143,7 @@
       </div>
     </div>
     {% endif %} {% endif %} {% endfor %} {% else %}
-    <div class="search-item-container" data-aos="fade-up" data-aos-delay="100">
+    <div class="search-item-container" data-aos="fade-down" data-aos-offset="0" data-aos-duration="500">
       <div class="search-item-box" onclick="toggleExpand(this)">
         <h3>No Results</h3>
       </div>
