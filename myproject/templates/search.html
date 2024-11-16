@@ -99,9 +99,9 @@
             <div class="col-lg-10">
               <h2 data-aos="fade-up" data-aos-delay="100">Search Results:</h2>
 
-              {% if searched %}
+              {% if raw_searched %}
               <p data-aos="fade-up" data-aos-delay="200">
-                Are you looking for "{{searched}}"
+                Are you looking for "{{raw_searched}}"
               </p>
 
               {% else %}
@@ -116,7 +116,7 @@
       </section>
       <!-- /Hero Section -->
     </main>
-
+    {% if raw_searched %} {% for law in laws %} {% if forloop.first %}
     <div
       class="search-item-container-main"
       data-aos="fade-up"
@@ -124,77 +124,34 @@
     >
       <div class="search-item-box" onclick="toggleExpand(this)">
         <ul>
-          <h3>Article 1</h3>
-          <li class="search-item">Name and territory of the Union</li>
-          <li class="extra-content">
-            India, that is Bharat, shall be a Union of States. Lorem ipsum
-            dolor, sit amet consectetur adipisicing elit. Natus debitis nisi
-            facilis harum tenetur quos possimus porro sunt, dolor, delectus
-            magni sapiente dicta! Iusto ea fuga nisi. Tenetur, in saepe.
-          </li>
+          {% if law.law_name == 'Article 0' %}
+          <h3>Preamble</h3>
+          <li class="extra-content">{{ law.desc }}</li>
+          {% else %}
+          <h3>{{ law.law_name }}</h3>
+          <li class="search-item">{{ law.title }}</li>
+          <li class="extra-content">{{ law.desc }}</li>
+          {% endif %}
         </ul>
       </div>
     </div>
-
+    {% else %} {% if law.law_name != 'Article 0' %}
     <div class="search-item-container" data-aos="fade-up" data-aos-delay="100">
       <div class="search-item-box" onclick="toggleExpand(this)">
         <ul>
-          <h3>Article 2</h3>
-          <li class="search-item">Name and territory of the Union</li>
-          <li class="extra-content">
-            India, that is Bharat, shall be a Union of States. Lorem ipsum
-            dolor, sit amet consectetur adipisicing elit. Natus debitis nisi
-            facilis harum tenetur quos possimus porro sunt, dolor, delectus
-            magni sapiente dicta! Iusto ea fuga nisi. Tenetur, in saepe.
-          </li>
+          <h3>{{ law.law_name }}</h3>
+          <li class="search-item">{{ law.title }}</li>
+          <li class="extra-content">{{ law.desc }}</li>
         </ul>
       </div>
     </div>
-
+    {% endif %} {% endif %} {% endfor %} {% else %}
     <div class="search-item-container" data-aos="fade-up" data-aos-delay="100">
       <div class="search-item-box" onclick="toggleExpand(this)">
-        <ul>
-          <h3>Article 3</h3>
-          <li class="search-item">Name and territory of the Union</li>
-          <li class="extra-content">
-            India, that is Bharat, shall be a Union of States. Lorem ipsum
-            dolor, sit amet consectetur adipisicing elit. Natus debitis nisi
-            facilis harum tenetur quos possimus porro sunt, dolor, delectus
-            magni sapiente dicta! Iusto ea fuga nisi. Tenetur, in saepe.
-          </li>
-        </ul>
+        <h3>No Results</h3>
       </div>
     </div>
-
-    <div class="search-item-container" data-aos="fade-up" data-aos-delay="100">
-      <div class="search-item-box" onclick="toggleExpand(this)">
-        <ul>
-          <h3>Article 6</h3>
-          <li class="search-item">Name and territory of the Union</li>
-          <li class="extra-content">
-            India, that is Bharat, shall be a Union of States. Lorem ipsum
-            dolor, sit amet consectetur adipisicing elit. Natus debitis nisi
-            facilis harum tenetur quos possimus porro sunt, dolor, delectus
-            magni sapiente dicta! Iusto ea fuga nisi. Tenetur, in saepe.
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="search-item-container" data-aos="fade-up" data-aos-delay="100">
-      <div class="search-item-box" onclick="toggleExpand(this)">
-        <ul>
-          <h3>Article 4</h3>
-          <li class="search-item">Name and territory of the Union</li>
-          <li class="extra-content">
-            India, that is Bharat, shall be a Union of States. Lorem ipsum
-            dolor, sit amet consectetur adipisicing elit. Natus debitis nisi
-            facilis harum tenetur quos possimus porro sunt, dolor, delectus
-            magni sapiente dicta! Iusto ea fuga nisi. Tenetur, in saepe.
-          </li>
-        </ul>
-      </div>
-    </div>
+    {% endif %}
 
     <!-- Scroll Top -->
     <a
