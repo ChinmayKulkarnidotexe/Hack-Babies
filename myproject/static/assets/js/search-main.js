@@ -216,3 +216,7 @@
   document.addEventListener('scroll', navmenuScrollspy);
 
 })();
+
+function toggleExpand(element) {
+  element.classList.toggle("expanded");
+}

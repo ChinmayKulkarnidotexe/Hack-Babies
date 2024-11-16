@@ -765,7 +765,7 @@ section,
 --------------------------------------------------------------*/
 .hero {
   width: 100%;
-  min-height: 100vh;
+  min-height: 54vh;
   position: relative;
   padding: 80px 0;
   display: flex;
@@ -1013,26 +1013,45 @@ section,
 .search-item-box{
   width: 80%;
   height: auto;
-  display: inline-flex;
+  display: block;
   align-items: center;
   justify-content: center;
+  max-height: 100px;
+  overflow: hidden;
   box-shadow: 5px 10px 50px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  transition: all 0.3s ease-out 0s;
+  transition: max-height 1.6s ease-out;
   margin: 5px auto 10px auto;
   padding: 2px;
   font-family: var(--default-font);
   background-color: white;
+  cursor: pointer;
   
 }
 
+.search-item-box.expanded{
+  max-height: 250px; 
+  
+}
 
+.extra-content {
+  display: none; 
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.search-item-box.expanded .extra-content {
+  display: block;
+  opacity: 1;
+}
 .search-item-box h3{
   padding-top: 20px;
   font-family: var(--heading-font);
   font-weight: bold;
   font-size: 24px;
   font-weight: 700;
+  text-align: left;
+  
 }
 
 .search-item-box li{
@@ -1040,6 +1059,8 @@ section,
   font-family: var(--default-font);
   font-size: 16px;
   padding-bottom: 8px;
+  padding-right: 2%;
+  text-align: left;
 }
 
 /*--------------------------------------------------------------
