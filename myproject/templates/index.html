@@ -175,9 +175,10 @@
             </div>
 
             <div class="col-lg-6">
+              <!-- action="forms/contact.php"
+                method="post" -->
               <form
-                action="forms/contact.php"
-                method="post"
+                
                 class="php-email-form"
                 data-aos="fade-up"
                 data-aos-delay="200"
@@ -185,7 +186,7 @@
                 <div class="row gy-4">
                   <div class="col-md-6">
                     <input
-                      type="text"
+                      type="text" id="name"
                       name="name"
                       class="form-control"
                       placeholder="Your Name"
@@ -195,7 +196,7 @@
 
                   <div class="col-md-6">
                     <input
-                      type="email"
+                      type="email" id="email"
                       class="form-control"
                       name="email"
                       placeholder="Your Email"
@@ -205,7 +206,7 @@
 
                   <div class="col-12">
                     <input
-                      type="text"
+                      type="text" id="subject"
                       class="form-control"
                       name="subject"
                       placeholder="Subject"
@@ -215,7 +216,7 @@
 
                   <div class="col-12">
                     <textarea
-                      class="form-control"
+                      class="form-control" id="message"
                       name="message"
                       rows="6"
                       placeholder="Message"
@@ -223,18 +224,55 @@
                     ></textarea>
                   </div>
 
-                  <div class="col-12 text-center">
+                  <!-- <div class="col-12 text-center">
                     <div class="loading">Loading</div>
                     <div class="error-message"></div>
                     <div class="sent-message">
                       Your message has been sent. Thank you!
-                    </div>
+                    </div> -->
 
-                    <button type="submit">Send Message</button>
+                    <button type="submit" onclick="sendEmail()">Send Message</button>
                   </div>
                 </div>
               </form>
             </div>
+
+
+
+            <script>
+              function sendEmail() {
+                // Get form values
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+          
+                // Construct the mailto link
+
+
+                //CHANGE EMAIL
+
+                
+                const mailtoLink = `mailto:FORNOW@example.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+                  `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+                )}`;
+          
+                // Open the email client
+                window.location.href = mailtoLink;
+              }
+            </script>
+
+
+
+
+
+
+
+
+
+
+
+
             <!-- End Contact Form -->
           </div>
         </div>
