@@ -1,15 +1,12 @@
 from django.shortcuts import render
 from django.conf import settings
 from .models import Laws
+import json
+from django.http import JsonResponse
 
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
-
-# def search(request):
-#     query = request.POST.get('search')
-#     #print("Search Query:", query)
-#     return render(request, 'search.html',{'query': query})
 
 def search(request):
     if request.method == "POST":
