@@ -2,38 +2,38 @@ import json
 from django.core.management.base import BaseCommand
 
 class Command(BaseCommand):
-    help = "Replace all double break characters with just one break character in a JSON file"
+    help = "Remove a specific key from a JSON file"
 
     def handle(self, *args, **kwargs):
         # Path to your JSON file
-        input_file = "C:\\Users\\abhin\\OneDrive\\文档\\GitHub\\Hack-Babies\\myproject\\test_constitution_output.json"
-        output_file = "C:\\Users\\abhin\\OneDrive\\文档\\GitHub\\Hack-Babies\\myproject\\test_constitution_output_v2.json"
+        input_file = "C:\\Users\\arjun\\Downloads\\Indian-Law-Penal-Code-Json-main\\Indian-Law-Penal-Code-Json-main\\edit 4 files\\iea.json"
+        output_file = "C:\\Users\\arjun\\OneDrive\\Documents\\GitHub\\Hack-Babies\\myproject\\iea_2.json"
 
-        # Function to replace \n with <br/>
-        def replace_newlines(data):
-            if isinstance(data, str):
-                return data.replace('<br/> <br/>', '<br/>')
-            elif isinstance(data, dict):
-                return {key: replace_newlines(value) for key, value in data.items()}
+        # Key to remove
+        key_to_remove = "chapter"  # Replace this with the desired key
+
+        # Function to remove the specified key
+        def remove_key(data):
+            if isinstance(data, dict):
+                return {k: remove_key(v) for k, v in data.items() if k != key_to_remove}
             elif isinstance(data, list):
-                return [replace_newlines(item) for item in data]
+                return [remove_key(item) for item in data]
             else:
                 return data
 
         try:
-            
             # Open the JSON file with the correct encoding (e.g., 'utf-8')
             with open(input_file, 'r', encoding='utf-8') as file:
                 json_data = json.load(file)
 
             # Process the data
-            modified_data = replace_newlines(json_data)
+            modified_data = remove_key(json_data)
 
             # Save the modified data back to a JSON file
             with open(output_file, 'w', encoding='utf-8') as file:
                 json.dump(modified_data, file, indent=4)
 
-            self.stdout.write(self.style.SUCCESS(f"All double break characters replaced and saved to {output_file}"))
+            self.stdout.write(self.style.SUCCESS(f"Key '{key_to_remove}' removed and saved to {output_file}"))
 
         except UnicodeDecodeError as e:
             self.stderr.write(self.style.ERROR(f"Encoding error: {e}"))

@@ -1017,6 +1017,7 @@ section,
   align-items: center;
   justify-content: center;
   max-height: 100px;
+  min-height: 100px;
   overflow: hidden;
   box-shadow: 5px 10px 50px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
