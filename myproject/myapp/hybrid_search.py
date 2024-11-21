@@ -44,7 +44,6 @@ article_embeddings = semantic_model.encode(article_texts, convert_to_tensor=True
 def hybrid_search(query, weight_keyword, weight_semantic):
     # Perform keyword-based search using BM25
     keyword_results = keyword_search(query, articles)  # Top 5 results based on keyword matching
-    print(keyword_results)
     # Perform semantic search using LLM embeddings
     query_embedding = semantic_model.encode([query], convert_to_tensor=True)
     similarities = cosine_similarity(query_embedding, article_embeddings)
@@ -59,13 +58,13 @@ def hybrid_search(query, weight_keyword, weight_semantic):
             "title": article["title"],
             "description": article["description"],
             "info": article["info"],
-            "score": float(article["score"]) * weight_keyword *100  # Adjust score by weight
+            "score": float(article["score"]) * weight_keyword  # Adjust score by weight
         }
 
     # Process semantic-based results
     for idx in semantic_results_indices:
         article = articles[idx]
-        semantic_score = similarities[0][idx] * weight_semantic * 100  # Adjust score by weight
+        semantic_score = similarities[0][idx] * weight_semantic  # Adjust score by weight
         
         # Check if the article is already in the results and if the semantic score is better
         if article["article"] not in results:
