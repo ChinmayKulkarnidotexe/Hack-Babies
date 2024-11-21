@@ -10,7 +10,7 @@ keyword_index = Embeddings()
 semantic_model = SentenceTransformer('all-MiniLM-L6-v2')
 
 # Load your constitutional articles from the JSON file
-with open('final_clean_constitution.json', 'r') as file:
+with open('data\\final_clean_constitution.json', 'r') as file:
     articles = json.load(file)
 
 def keyword_search(query, articles):

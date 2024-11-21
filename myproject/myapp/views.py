@@ -8,9 +8,10 @@ from django.http import JsonResponse
 
 def search(request):
     query = request.POST['searched']
+    query_space = query + " "
     search_results = [] 
     
-    def dynamic_weighting(query):
+    def dynamic_weighting(query_space):
     # Simple rule: if the query is short and specific, prioritize keyword search
         if len(query.split()) < 3:
             return 0.7, 0.3  # More weight to BM25 (keyword)
@@ -18,8 +19,8 @@ def search(request):
             return 0.3, 0.7  # More weight to semantic search
         
     if query:
-        weight_keyword, weight_semantic = dynamic_weighting(query)
-        search_results = hybrid_search(query,weight_keyword,weight_semantic)
+        weight_keyword, weight_semantic = dynamic_weighting(query_space)
+        search_results = hybrid_search(query_space,weight_keyword,weight_semantic)
     return render(request, 'search.html', {'query': query, 'results': search_results})
 
 def index(request):
