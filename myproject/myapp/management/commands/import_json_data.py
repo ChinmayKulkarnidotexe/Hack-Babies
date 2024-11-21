@@ -1,14 +1,53 @@
+# myapp/management/commands/import_json_data.py
 import json
 from django.core.management.base import BaseCommand
-from myapp.models import Laws
+from myapp.models import Article
+from myapp.utils import get_article_embedding 
 
 class Command(BaseCommand):
-    help = 'Load data from JSON file into Laws model'
+    help = 'Import article data and their embeddings from a JSON file'
 
     def handle(self, *args, **kwargs):
+
+        try:
+            # Open and read the JSON file
+            with open('final_clean_constitution.json', 'r') as file:
+                data = json.load(file)
+
+            for item in data:
+                article_text = item.get('article')
+                title = item.get('title')
+                description = item.get('description')
+
+                # Assuming get_article_embedding function generates embeddings
+                embedding = get_article_embedding(article_text)  # This will return a list or vector
+                
+                # Create and save the article along with its embedding
+                Article.objects.create(
+                    article=article_text,
+                    title=title,
+                    description=description,
+                    embedding=embedding,  # If embedding is a list, it will be serialized automatically
+                )
+            
+            self.stdout.write(self.style.SUCCESS('Successfully imported articles and embeddings'))
+
+        except Exception as e:
+            self.stderr.write(self.style.ERROR(f'Error importing data: {e}'))
+
+
+
+
+
+
+
+# class Command(BaseCommand):
+#     help = 'Load data from JSON file into Article model'
+
+#     def handle(self, *args, **kwargs):
         
-        with open('constitution_of_india.json', 'r',encoding='utf-8') as file:
-            data = json.load(file)
+#         with open('final_clean_constitution.json', 'r',encoding='utf-8') as file:
+#             data = json.load(file)
             # ['ConstitutionOfIndia']['Parts']
             
         # part_names = ['Part I','Part II','Part III','Part IV','Part IVA','Part V']
@@ -97,7 +136,7 @@ class Command(BaseCommand):
 
         #         Laws.objects.create(law_name=article,title=data[part]['Articles'][article]['Title'], text=data[part]['Articles'][article]['Text'])
 
-        for item in data:
-            Laws.objects.create(law_name=item['article'], title=item['title'], desc=item['description'])
+        # for item in data:
+        #     Article.objects.create(article=item['article'], title=item['title'], description=item['description'], )
 
-        self.stdout.write(self.style.SUCCESS('Successfully imported data into Laws model'))
+        # self.stdout.write(self.style.SUCCESS('Successfully imported data into Article model'))

@@ -1,9 +1,67 @@
 from django.shortcuts import render
-from django.conf import settings
 #from .models import Laws
 import json
-from .hybrid_search import hybrid_search_dynamic_normalized
+from .hybrid_search import hybrid_search
 from django.http import JsonResponse
+# from scipy.spatial.distance import cosine
+# from django.db.models import Q
+
+def search(request):
+    query = request.POST['searched']
+    search_results = [] 
+    
+    def dynamic_weighting(query):
+    # Simple rule: if the query is short and specific, prioritize keyword search
+        if len(query.split()) < 3:
+            return 0.7, 0.3  # More weight to BM25 (keyword)
+        else:
+            return 0.3, 0.7  # More weight to semantic search
+        
+    if query:
+        weight_keyword, weight_semantic = dynamic_weighting(query)
+        search_results = hybrid_search(query,weight_keyword,weight_semantic)
+    return render(request, 'search.html', {'query': query, 'results': search_results})
+
+def index(request):
+    return render(request, 'index.html')
+
+# def cosine_similarity(embedding1, embedding2):
+#     return 1 - cosine(embedding1, embedding2)
+
+
+# def search(request):
+#     from .models import Article
+#     query = request.POST['searched']
+#     articles = []
+
+#     if query:
+#         # Keyword-based search
+#         keyword_results = Article.objects.filter(
+#             Q(title__icontains=query) | Q(description__icontains=query)
+#         )
+
+#         # Semantic search
+#         query_embedding = get_article_embedding(query)
+#         semantic_results = []
+#         for article in Article.objects.all():
+#             similarity = cosine_similarity(query_embedding, article.embedding)
+#             semantic_results.append((article, similarity))
+
+#         # Sort semantic results by similarity
+#         semantic_results.sort(key=lambda x: x[1], reverse=True)
+        
+#         # Combine and remove duplicates (if any)
+#         articles = list(set(keyword_results) | set([x[0] for x in semantic_results]))
+        
+#     else:
+#         articles = Article.objects.all()
+
+#     return render(request, 'search_results.html', {'articles': articles})
+
+
+
+
+
 
 # def search(request):
 #     # Initialize the BM25 index with txtai
@@ -45,22 +103,6 @@ from django.http import JsonResponse
 
 
 
-def search(request):
-    query = request.POST['searched']
-    search_results = [] 
-    
-    # def dynamic_weighting(query):
-    # # Simple rule: if the query is short and specific, prioritize keyword search
-    #     if len(query.split()) < 3:
-    #         return 0.8, 0.2  # More weight to BM25 (keyword)
-    #     else:
-    #         return 0.2, 0.8  # More weight to semantic search
-        
-    if query:
-        # weight_keyword, weight_semantic = dynamic_weighting(query)
-        search_results = hybrid_search_dynamic_normalized(query)
-        # search_results = hybrid_search(query,weight_keyword,weight_semantic)
-    return render(request, 'search.html', {'query': query, 'results': search_results})
 
 
 
@@ -83,8 +125,6 @@ def search(request):
 #     return render(request, 'search.html', {'query': query, 'results': results})
 
 # Create your views here.
-def index(request):
-    return render(request, 'index.html')
 
 
 
