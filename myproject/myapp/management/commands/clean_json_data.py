@@ -26,8 +26,8 @@ class Command(BaseCommand):
     help = 'Cleans the JSON data file by removing HTML tags, bullet points, and special symbols.'
 
     def handle(self, *args, **options):
-        input_file = 'updated_constitution.json'
-        output_file = 'cleaned_updated_constitution.json'
+        input_file = 'C:\\Users\\abhin\\OneDrive\\文档\\GitHub\\Hack-Babies\\myproject\\data\\cpc_v6.json'
+        output_file = 'C:\\Users\\abhin\\OneDrive\\文档\\GitHub\\Hack-Babies\\myproject\\data\\cpc_v7.json'
 
         try:
             # Load the JSON data
@@ -38,10 +38,10 @@ class Command(BaseCommand):
             cleaned_data = []
             for item in data:
                 cleaned_item = {
-                    "article": item.get("article", ""),  # Preserve the article field as-is
+                    "name": "CPC Section " + str(item.get("name", "")),  # Preserve the article field as-is
                     "title": clean_text(item.get("title", "")),  # Clean the title
                     "description": clean_text(item.get("description", "")),  # Clean the description
-                    "info": item.get("info", "")  # New info key
+                    "info": item.get("info", "")  # Preserve the info field as-is
                 }
                 cleaned_data.append(cleaned_item)
             

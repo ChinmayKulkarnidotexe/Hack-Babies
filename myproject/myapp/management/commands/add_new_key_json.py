@@ -29,8 +29,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         try:
-            input_file = 'constitution_of_india.json'  # Replace with your input file path
-            output_file = 'updated_constitution.json'  # Replace with your desired output file path
+            input_file = 'C:\\Users\\abhin\\OneDrive\\文档\\GitHub\\Hack-Babies\\myproject\\data\\nia_v5.json'  # Replace with your input file path
+            output_file = 'C:\\Users\\abhin\\OneDrive\\文档\\GitHub\\Hack-Babies\\myproject\\data\\nia_v6.json'  # Replace with your desired output file path
             new_key = 'info'  # Name of the new key to add
             source_key = 'description'  # Existing key from which to copy values
 

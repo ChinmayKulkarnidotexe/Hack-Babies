@@ -7,14 +7,14 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         # Path to your JSON file
-        input_file = "C:\\Users\\abhin\\OneDrive\\文档\\GitHub\\Hack-Babies\\myproject\\clean_constitution_test.json"
-        output_file = "C:\\Users\\abhin\\OneDrive\\文档\\GitHub\\Hack-Babies\\myproject\\clean_constitution_test_v2.json"
+        input_file = "C:\\Users\\abhin\\OneDrive\\文档\\GitHub\\Hack-Babies\\myproject\\data\\final_clean_constitution_v5.json"
+        output_file = "C:\\Users\\abhin\\OneDrive\\文档\\GitHub\\Hack-Babies\\myproject\\data\\final_clean_constitution_v6.json"
 
         # Function to prepend a string to the 'description' key
-        def prepend_to_description(data, prepend_string):
+        def prepend_to_description(data):
             for item in data:
                 if isinstance(item, dict) and "description" in item:
-                    item["description"] = "According to" + item['article'] + prepend_string + item["description"]
+                    item["description"] = item['article'] + ", " + item["description"]
             return data
 
         try:
@@ -23,7 +23,7 @@ class Command(BaseCommand):
                 json_data = json.load(file)
 
             # Process the data
-            modified_data = prepend_to_description(json_data,)
+            modified_data = prepend_to_description(json_data)
 
             # Save the modified data back to a JSON file
             with open(output_file, 'w', encoding='utf-8') as file:

@@ -129,7 +129,7 @@
           <h3>Preamble</h3>
           <li class="extra-content">{{ result.info|safe }}</li>
           {% else %}
-          <h3>{{ result.article|safe }}</h3>
+          <h3>{{ result.name|safe }}</h3>
           <li class="search-item">{{ result.title|safe }}</li>
           <li class="extra-content">{{ result.info|safe }}</li>
           <li class="extra-content">
@@ -139,7 +139,7 @@
         </ul>
       </div>
     </div>
-    {% else %} {% if result.article|safe != 'Article 0' %}
+    {% else %} {% if result.name|safe != 'Article 0' %}
     <div
       class="search-item-container"
       data-aos="fade-down"
@@ -148,7 +148,7 @@
     >
       <div class="search-item-box" onclick="toggleExpand(this)">
         <ul>
-          <h3>{{ result.article|safe }}</h3>
+          <h3>{{ result.name|safe }}</h3>
           <li class="search-item">{{ result.title|safe }}</li>
           <li class="extra-content">{{ result.info|safe }}</li>
           <li class="extra-content">

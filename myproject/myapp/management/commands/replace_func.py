@@ -6,8 +6,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         # Path to your JSON file
-        input_file = "C:\\Users\\arjun\\OneDrive\\Documents\\GitHub\\Hack-Babies\\myproject\\iea_4.json"
-        output_file = "C:\\Users\\arjun\\OneDrive\\Documents\\GitHub\\Hack-Babies\\myproject\\iea_5.json"
+        input_file = "C:\\Users\\abhin\\OneDrive\\文档\\GitHub\\Hack-Babies\\myproject\\data\\final_clean_constitution_v6.json"
+        output_file = "C:\\Users\\abhin\\OneDrive\\文档\\GitHub\\Hack-Babies\\myproject\\data\\final_clean_constitution_v.json"
 
         # Function to replace 'section' with 'name'
         def replace_key(data):

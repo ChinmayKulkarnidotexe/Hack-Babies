@@ -13,7 +13,7 @@ def search(request):
     
     def dynamic_weighting(query_space):
     # Simple rule: if the query is short and specific, prioritize keyword search
-        if len(query.split()) < 3:
+        if len(query.split()) < 5:
             return 0.7, 0.3  # More weight to BM25 (keyword)
         else:
             return 0.3, 0.7  # More weight to semantic search
