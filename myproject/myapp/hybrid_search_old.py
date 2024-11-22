@@ -10,33 +10,27 @@ keyword_index = Embeddings()
 semantic_model = SentenceTransformer('all-MiniLM-L6-v2')
 
 # Load your constitutional names from the JSON file
-
 with open('final_database_v1.json', 'r') as file:
-    names =  json.load(file)
+    names = json.load(file)
 
 def keyword_search(query, names):
-    keyword_results = []
     
-    for item in names:
-        # Check for keyword match
-        keyword_score = 0
-        if query.lower() in item['name'].lower():
-            keyword_score += 1
-        if query.lower() in item['title'].lower():
-            keyword_score += 1
-        if query.lower() in item['description'].lower():
-            keyword_score += 1
+    results = []
+    
+    for name in names:
+        # Count how many times the query appears in the text
+        count = name["description"].lower().count(query.lower())
         
-        if keyword_score > 0:  # Only consider matches
-            keyword_results.append({"name": item["name"], 
-                        "title": item["title"],
-                        "description": item["description"], 
-                        "info": item["info"],
-                        "score": keyword_score})  # Higher count = higher relevance
+        if count > 0:  # Only consider matches
+            results.append({"name": name["name"], 
+                            "title": name["title"],
+                            "description": name["description"], 
+                            "info": name["info"],
+                            "score": count})  # Higher count = higher relevance
 
     # Sort results by relevance (highest score first)
-    keyword_results.sort(key=lambda x: x["score"], reverse=True)
-    return keyword_results
+    results.sort(key=lambda x: x["score"], reverse=True)
+    return results
 
 # Create list of names for keyword indexing (BM25)
 index_data = [{"name": name["name"], "title": name["title"], "description": name["description"]} for name in names]

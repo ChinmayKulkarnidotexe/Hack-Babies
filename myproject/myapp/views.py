@@ -1,30 +1,153 @@
-from django.shortcuts import render
 #from .models import Laws
-import json
 from .hybrid_search import hybrid_search
+import json
+from sentence_transformers import SentenceTransformer, util
+from django.shortcuts import render
 from django.http import JsonResponse
-# from scipy.spatial.distance import cosine
-# from django.db.models import Q
+from scipy.spatial.distance import cosine
+from django.db.models import Q
 
-def search(request):
-    query = request.POST['searched']
-    query_space = query + " "
-    search_results = [] 
-    
-    def dynamic_weighting(query_space):
-    # Simple rule: if the query is short and specific, prioritize keyword search
-        if len(query.split()) < 5:
-            return 0.7, 0.3  # More weight to BM25 (keyword)
-        else:
-            return 0.3, 0.7  # More weight to semantic search
-        
-    if query:
-        weight_keyword, weight_semantic = dynamic_weighting(query_space)
-        search_results = hybrid_search(query_space,weight_keyword,weight_semantic)
-    return render(request, 'search.html', {'query': query, 'results': search_results})
 
 def index(request):
     return render(request, 'index.html')
+
+
+def search(request):
+    query = request.POST['searched']
+    search_results = [] 
+    
+    def dynamic_weighting(query):
+    # Simple rule: if the query is short and specific, prioritize keyword search
+        query_length = len(query.split())
+        if query_length > 5:
+            return 0.3, 0.7
+        elif query_length <= 3:
+            return 0.7, 0.3
+        else:
+            return 0.5, 0.5
+        
+    if query:
+        weight_keyword, weight_semantic = dynamic_weighting(query)
+        search_results = hybrid_search(query,weight_keyword,weight_semantic)
+    return render(request, 'search.html', {'query': query, 'results': search_results})
+
+
+
+
+
+
+
+
+
+
+
+
+# # Load JSON data (from a file or database)
+# def load_json_data():
+#     with open('final_database_v1.json', 'r') as file:
+#         return json.load(file)
+
+# # Load pre-trained model for semantic similarity
+# model = SentenceTransformer('all-MiniLM-L6-v2')
+
+# # Define weights for keyword and semantic search
+# # KEYWORD_WEIGHT = 0.5  # Weight for exact keyword match
+# # SEMANTIC_WEIGHT = 0.5  # Weight for semantic similarity
+
+# # Search function
+# def hybrid_search(request):
+#     query = request.POST.get('searched', '')
+#     json_data = load_json_data()
+    
+#     def dynamic_weighting(query):
+#     # Simple rule: if the query is short and specific, prioritize keyword search
+#         query_length = len(query.split())
+#         if query_length > 5:
+#             keyword_weight = 0.3
+#             semantic_weight = 0.7
+#         elif query_length <= 3:
+#             keyword_weight = 0.7
+#             semantic_weight = 0.3
+#         else:
+#             keyword_weight = 0.5
+#             semantic_weight = 0.5
+        
+#         # Normalize weights to ensure they sum to 1
+#         total_weight = keyword_weight + semantic_weight
+#         keyword_weight /= total_weight
+#         semantic_weight /= total_weight
+        
+#         return keyword_weight, semantic_weight
+    
+#     if query:
+#         KEYWORD_WEIGHT, SEMANTIC_WEIGHT = dynamic_weighting(query)
+
+#         # **1. Keyword Search**: Basic matching
+#         keyword_results = []
+#         for item in json_data:
+#             # Check for keyword match
+#             keyword_score = 0
+#             if query.lower() in item['name'].lower():
+#                 keyword_score += 1
+#             if query.lower() in item['title'].lower():
+#                 keyword_score += 1
+#             if query.lower() in item['description'].lower():
+#                 keyword_score += 1
+
+#             # Add keyword result if there's a match
+#             if keyword_score > 0:
+#                 keyword_results.append((item, keyword_score))
+
+#         semantic_results = []
+#         if not keyword_results:
+#             # Ensure valid data
+#             filtered_data = [item for item in json_data if 'description' in item]
+#             descriptions = [item['description'] for item in filtered_data]
+            
+#             if not descriptions:
+#                 return JsonResponse({'results': []})  # No descriptions to search
+
+#             # Generate embeddings
+#             query_embedding = model.encode(query, convert_to_tensor=True)
+#             description_embeddings = model.encode(descriptions, convert_to_tensor=True)
+
+#             # Calculate similarity scores
+#             scores = util.pytorch_cos_sim(query_embedding, description_embeddings)[0]
+
+#             # Append results with range check
+#             for i, score in enumerate(scores):
+#                 if i < len(filtered_data):  # Ensure index is valid
+#                     semantic_results.append((filtered_data[i], score.item()))
+#                 else:
+#                     print(f"Index {i} out of range for filtered_data.")
+
+        
+        
+#         # **Combine Keyword & Semantic Results with Weighting**:
+#         all_results = []
+
+#         # Add weighted keyword results
+#         for result, keyword_score in keyword_results:
+#             total_score = (keyword_score * KEYWORD_WEIGHT)
+#             all_results.append((result, total_score))
+
+#         # Add weighted semantic results
+#         for result, semantic_score in semantic_results:
+#             total_score = (semantic_score * SEMANTIC_WEIGHT)
+#             all_results.append((result, total_score))
+
+#         # Sort results by total score (highest first)
+#         sorted_results = sorted(all_results, key=lambda x: x[1], reverse=True)
+
+#         # Return sorted results in the JSON response or template
+#         top_results = [result[0] for result in sorted_results]  # Get the top result items
+    
+#     return render(request, 'search.html',{'query': query,'results': top_results})
+
+
+
+
+
 
 # def cosine_similarity(embedding1, embedding2):
 #     return 1 - cosine(embedding1, embedding2)
