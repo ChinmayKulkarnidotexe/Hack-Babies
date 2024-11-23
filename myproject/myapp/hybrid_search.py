@@ -7,7 +7,7 @@ import nltk
 from nltk.corpus import stopwords
 
 STOPWORDS = set(stopwords.words('english'))
-RESTRICTED_WORDS = ['say','says','about','india','means','mean',"a", "an", "the", "on", "in", "at", "by", "to", "of", "for", "with", "about", 
+RESTRICTED_WORDS = ['say','says','about','means','mean','a', "an", "the", "on", "in", "at", "by", "to", "of", "for", "with", "about", 
     "into", "onto", "upon", "from", "over", "under", "through", "between", 
     "and", "or", "but", "so", "yet", "nor", "either", "neither", "both", 
     "it", "its", "they", "them", "he", "she", "him", "her", "this", "that", 
