@@ -3,29 +3,6 @@ from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 import json
 import re
-import nltk
-from nltk.corpus import stopwords
-
-STOPWORDS = set(stopwords.words('english'))
-RESTRICTED_WORDS = ['say','says','about','india','means','mean',"a", "an", "the", "on", "in", "at", "by", "to", "of", "for", "with", "about", 
-    "into", "onto", "upon", "from", "over", "under", "through", "between", 
-    "and", "or", "but", "so", "yet", "nor", "either", "neither", "both", 
-    "it", "its", "they", "them", "he", "she", "him", "her", "this", "that", 
-    "these", "those", "who", "whom", "whose", "we", "us", "you", "your", 
-    "i", "me", "my", "is", "are", "was", "were", "will", "would", "should", 
-    "could", "might", "must", "can", "do", "did", "does", "be", "been", "being", 
-    "have", "had", "has", "here", "there", "where", "when", "how", "why", "also", 
-    "then", "now", "states", "describe", "explain", "define", 
-    "what", "does", "any", "please", "tell", "give", "list", "related to", 
-    "about", "according to", "what does", "what is", "can you", "tell me", 
-    "give me", "list all"]
-ABBREVIATIONS = {
-    "mva": "motor vehicles act",
-    "nia": "negotiable instruments act",
-    "ida": "indian divorce act",
-    "iea": "indian evidence act",
-}
-
 
 # Initialize the BM25 index with txtai
 keyword_index = Embeddings()
@@ -38,48 +15,44 @@ semantic_model = SentenceTransformer('all-MiniLM-L6-v2')
 with open('final_database_v1.json', 'r') as file:
     names =  json.load(file)
 
-
 def preprocess_query(query):
+    # Combine multiple patterns using the OR (|) operator
+    match = re.search(
+        r'\barticle (\d+)\b|\bida section (\d+)\b|\bcpc section (\d+)\b|\bcrpc section (\d+)\b|\biea section (\d+)\b|\bipc section (\d+)\b|\bmva section (\d+)\b|\bnia section (\d+)\b|\bnegotiable instruments act section (\d+)\b|\bmotor vehicles act section (\d+)\b|\bindian evidence act section (\d+)\b|\bindian divorce act section (\d+)\b',
+        query, 
+        re.IGNORECASE
+    )
+
+    if match:
+        # Return normalized result for the first matched group
+        if match.group(1):  # Matches "Article"
+            return f"Article {match.group(1)}"
+        elif match.group(2):  # Matches "Section"
+            return f"Indian Divorce Act Section {match.group(2)}"
+        elif match.group(3):  # Matches "Clause"
+            return f"CPD Section {match.group(3)}"
+        elif match.group(4):  # Matches "Section"
+            return f"CRPC Section {match.group(4)}"
+        elif match.group(5):  # Matches "Clause"
+            return f"Indian Evidence Act Section {match.group(5)}"
+        elif match.group(6):  # Matches "Section"
+            return f"IPC Section {match.group(6)}"
+        elif match.group(7):  # Matches "Clause"
+            return f"Motor Vehicles Act Section {match.group(7)}"
+        elif match.group(8):  # Matches "Clause"
+            return f"Negotiable Instruments Act Section {match.group(8)}"
+        elif match.group(9):  # Matches "Clause"
+            return f"Negotiable Instruments Act Section {match.group(9)}"
+        elif match.group(10):  # Matches "Clause"
+            return f"Motor Vehicles Act Section {match.group(10)}"
+        elif match.group(11):  # Matches "Clause"
+            return f"Indian Evidence Act Section {match.group(11)}"
+        elif match.group(12):  # Matches "Section"
+            return f"Indian Divorce Act Section {match.group(12)}"
     
-    # Ensure query is a string
-    if isinstance(query, list):
-        query = " ".join(query)  # Combine list into a single string
-    elif not isinstance(query, str):
-        raise ValueError(f"Invalid query type: {type(query)}. Expected a string or list.")
-    
-    query = query.lower()
-    
-    # Expand abbreviations
-    for abbr, full_form in ABBREVIATIONS.items():
-        query = re.sub(rf'\b{abbr}\b', full_form, query, flags=re.IGNORECASE)
-        
-    words = query.split()
+    # Return original query if no match
+    return query
 
-    # Filter out stopwords
-    filtered_words = [word for word in words if (word not in STOPWORDS) and (word not in RESTRICTED_WORDS)]
-
-    filtered_query = " ".join(filtered_words) # Combine words
-
-    # Match specific patterns
-    article_match = re.search(r'\barticle (\d+)\b', filtered_query, re.IGNORECASE)
-    mva_section_match = re.search(r'\bmotor vehicles act\s+section (\d+)\b', filtered_query, re.IGNORECASE)
-    nia_section_match = re.search(r'\bnegotiable instruments act\s+section (\d+)\b', filtered_query, re.IGNORECASE)
-    ida_section_match = re.search(r'\bindian divorce act\s+section (\d+)\b', filtered_query, re.IGNORECASE)
-    iea_section_match = re.search(r'\bindian evidence act\s+section (\d+)\b', filtered_query, re.IGNORECASE)
-
-    # Return normalized format based on matches
-    if article_match:
-        return f"Article {article_match.group(1)}"
-    elif mva_section_match:
-        return f"Motor Vehicles Act Section {mva_section_match.group(1)}"
-    elif nia_section_match:
-        return f"Negotiable Instruments Act Section {nia_section_match.group(1)}"
-    elif ida_section_match:
-        return f"Indian Divorce Act Section {ida_section_match.group(1)}"
-    elif iea_section_match:
-        return f"Indian Evidence Act Section {iea_section_match.group(1)}"
-
-    return filtered_query
 
 
 
@@ -87,15 +60,15 @@ def preprocess_query(query):
 def keyword_search(query, names):
     keyword_results = []
     # Extract specific article number if present
-    match = re.search(r'\barticle (\d+)\b', query, re.IGNORECASE)
-    article_number = match.group(1) if match else None
+    # match = re.search(r'\barticle (\d+)\b', query, re.IGNORECASE)
+    # article_number = match.group(1) if match else None
 
     for item in names:
         keyword_score = 0
 
-        # Check for exact article match
-        if article_number and f"Article {article_number}" == item["name"]:
-            keyword_score += 5  # Assign higher score for exact matches
+        # # Check for exact article match
+        # if article_number and f"Article {article_number}" == item["name"]:
+        #     keyword_score += 5  # Assign higher score for exact matches
 
         # Check for regex match in name, title, and description
         if query.lower() in item['name'].lower():
@@ -132,13 +105,12 @@ name_embeddings = semantic_model.encode(name_texts, convert_to_tensor=True)
 def hybrid_search(query, weight_keyword, weight_semantic):
     # Preprocess query to normalize and extract specific article number
     processed_query = preprocess_query(query)
-    print(processed_query)
-    match = re.search(r'\barticle (\d+)\b', processed_query, re.IGNORECASE)
-    article_number = match.group(1) if match else None
+    # match = re.search(r'\barticle (\d+)\b', processed_query, re.IGNORECASE)
+    # article_number = match.group(1) if match else None
 
     # Perform keyword-based search
     keyword_results = keyword_search(processed_query, names)
-    print(keyword_results)
+
     # Perform semantic search
     query_embedding = semantic_model.encode([processed_query], convert_to_tensor=True)
     similarities = cosine_similarity(query_embedding, name_embeddings)
@@ -162,8 +134,8 @@ def hybrid_search(query, weight_keyword, weight_semantic):
         semantic_score = similarities[0][idx] * weight_semantic  # Adjust score by weight
 
         # If the query contains an article number, filter semantic results
-        if article_number and f"Article {article_number}" != name["name"]:
-            continue  # Skip non-matching articles
+        # if article_number and f"Article {article_number}" != name["name"]:
+        #     continue  # Skip non-matching articles
 
         # Add or merge results
         if name["name"] not in results:

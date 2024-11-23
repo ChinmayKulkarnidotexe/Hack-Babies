@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Prototype Website</title>
+    <title>Website</title>
     <meta name="result.info" content="" />
     <meta name="keywords" content="" />
 
@@ -132,9 +132,6 @@
           <h3>{{ result.name|safe }}</h3>
           <li class="search-item">{{ result.title|safe }}</li>
           <li class="extra-content">{{ result.info|safe }}</li>
-          <li class="extra-content">
-            Score: {{ result.score|percentage_format }}
-          </li>
           {% endif %}
         </ul>
       </div>
@@ -151,9 +148,6 @@
           <h3>{{ result.name|safe }}</h3>
           <li class="search-item">{{ result.title|safe }}</li>
           <li class="extra-content">{{ result.info|safe }}</li>
-          <li class="extra-content">
-            Score: {{ result.score|percentage_format }}
-          </li>
         </ul>
       </div>
     </div>
