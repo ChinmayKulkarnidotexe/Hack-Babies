@@ -5,6 +5,8 @@ import json
 import re
 import nltk
 from nltk.corpus import stopwords
+import nltk
+nltk.download('stopwords')
 
 STOPWORDS = set(stopwords.words('english'))
 RESTRICTED_WORDS = ['say','says','about','means','mean','a', "an", "the", "on", "in", "at", "by", "to", "of", "for", "with", "about", 
