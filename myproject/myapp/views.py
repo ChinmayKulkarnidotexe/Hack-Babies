@@ -1,11 +1,19 @@
-#from .models import Laws
 from .hybrid_search import hybrid_search
-import json
-from sentence_transformers import SentenceTransformer, util
 from django.shortcuts import render
-from django.http import JsonResponse
-from scipy.spatial.distance import cosine
-from django.db.models import Q
+from nltk.corpus import words
+
+VALID_WORDS = set(words.words())
+
+def is_gibberish(query):
+    words_in_query = query.split()
+    valid_words_count = sum(1 for word in words_in_query if word.lower() in VALID_WORDS)
+
+    # If fewer than 20% of words are valid, consider it gibberish
+    if valid_words_count / len(words_in_query) < 0.2:
+        return True
+    return False
+
+
 
 
 def index(request):
@@ -13,8 +21,12 @@ def index(request):
 
 
 def search(request):
+    
     query = request.POST['searched']
+    if is_gibberish(query): query = None
+    
     search_results = [] 
+    
     
     def dynamic_weighting(query):
     # Simple rule: if the query is short and specific, prioritize keyword search
@@ -26,20 +38,12 @@ def search(request):
         else:
             return 0.5, 0.5
         
+        
     if query:
         weight_keyword, weight_semantic = dynamic_weighting(query)
         search_results = hybrid_search(query,weight_keyword,weight_semantic)
+        
     return render(request, 'search.html', {'query': query, 'results': search_results})
-
-
-
-
-
-
-
-
-
-
 
 
 # # Load JSON data (from a file or database)
@@ -78,7 +82,7 @@ def search(request):
 #         semantic_weight /= total_weight
         
 #         return keyword_weight, semantic_weight
-    
+
 #     if query:
 #         KEYWORD_WEIGHT, SEMANTIC_WEIGHT = dynamic_weighting(query)
 

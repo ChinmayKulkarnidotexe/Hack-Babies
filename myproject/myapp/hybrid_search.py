@@ -3,7 +3,6 @@ from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 import json
 import re
-import nltk
 from nltk.corpus import stopwords
 import nltk
 nltk.download('stopwords')
@@ -41,6 +40,8 @@ with open('final_database_v1.json', 'r') as file:
     names =  json.load(file)
 
 
+
+
 def preprocess_query(query):
     
     # Ensure query is a string
@@ -48,13 +49,13 @@ def preprocess_query(query):
         query = " ".join(query)  # Combine list into a single string
     elif not isinstance(query, str):
         raise ValueError(f"Invalid query type: {type(query)}. Expected a string or list.")
-    
+
     query = query.lower()
-    
+
     # Expand abbreviations
     for abbr, full_form in ABBREVIATIONS.items():
         query = re.sub(rf'\b{abbr}\b', full_form, query, flags=re.IGNORECASE)
-        
+
     words = query.split()
 
     # Filter out stopwords
@@ -71,15 +72,15 @@ def preprocess_query(query):
 
     # Return normalized format based on matches
     if article_match:
-        return f"Article {article_match.group(1)}"
+        return f"Article {article_match[1]}"
     elif mva_section_match:
-        return f"Motor Vehicles Act Section {mva_section_match.group(1)}"
+        return f"Motor Vehicles Act Section {mva_section_match[1]}"
     elif nia_section_match:
-        return f"Negotiable Instruments Act Section {nia_section_match.group(1)}"
+        return f"Negotiable Instruments Act Section {nia_section_match[1]}"
     elif ida_section_match:
-        return f"Indian Divorce Act Section {ida_section_match.group(1)}"
+        return f"Indian Divorce Act Section {ida_section_match[1]}"
     elif iea_section_match:
-        return f"Indian Evidence Act Section {iea_section_match.group(1)}"
+        return f"Indian Evidence Act Section {iea_section_match[1]}"
 
     return filtered_query
 
@@ -90,7 +91,7 @@ def keyword_search(query, names):
     keyword_results = []
     # Extract specific article number if present
     match = re.search(r'\barticle (\d+)\b', query, re.IGNORECASE)
-    article_number = match.group(1) if match else None
+    article_number = match[1] if match else None
 
     for item in names:
         keyword_score = 0
@@ -134,30 +135,28 @@ name_embeddings = semantic_model.encode(name_texts, convert_to_tensor=True)
 def hybrid_search(query, weight_keyword, weight_semantic):
     # Preprocess query to normalize and extract specific article number
     processed_query = preprocess_query(query)
-    print(processed_query)
+    
     match = re.search(r'\barticle (\d+)\b', processed_query, re.IGNORECASE)
-    article_number = match.group(1) if match else None
+    article_number = match[1] if match else None
 
     # Perform keyword-based search
     keyword_results = keyword_search(processed_query, names)
-    print(keyword_results)
     # Perform semantic search
     query_embedding = semantic_model.encode([processed_query], convert_to_tensor=True)
     similarities = cosine_similarity(query_embedding, name_embeddings)
     semantic_results_indices = similarities.argsort()[0][-10:][::-1]  # Top 10 results
 
-    results = {}
-
-    # Process keyword-based results
-    for name in keyword_results:
-        results[name["name"]] = {
+    results = {
+        name["name"]: {
             "name": name["name"],
             "title": name["title"],
             "description": name["description"],
             "info": name["info"],
-            "score": float(name["score"]) * weight_keyword  # Adjust score by weight
+            "score": float(name["score"])
+            * weight_keyword,  # Adjust score by weight
         }
-
+        for name in keyword_results
+    }
     # Process semantic-based results
     for idx in semantic_results_indices:
         name = names[idx]
@@ -181,8 +180,5 @@ def hybrid_search(query, weight_keyword, weight_semantic):
             existing_score = results[name["name"]]["score"]
             results[name["name"]]["score"] = max(existing_score, semantic_score)
 
-    # Sort combined results by score
-    sorted_results = sorted(results.values(), key=lambda x: x['score'], reverse=True)
-
-    return sorted_results
+    return sorted(results.values(), key=lambda x: x['score'], reverse=True)
 
