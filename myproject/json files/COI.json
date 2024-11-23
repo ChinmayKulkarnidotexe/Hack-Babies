@@ -1,0 +1,321 @@
+{
+  "ConstitutionOfIndia": {
+    "Preamble": "We, the people of India, having solemnly resolved to constitute India into a Sovereign Socialist Secular Democratic Republic and to secure to all its citizens: Justice, Liberty, Equality, and Fraternity...",
+    "Parts": {
+      "Part I": {
+        "Title": "The Union and its Territory",
+        "Articles": {
+          "Article 1": {
+            "Title": "Name and territory of the Union",
+            "Text": "India, that is Bharat, shall be a Union of States."
+          },
+          "Article 2": {
+            "Title": "Admission or establishment of new States",
+            "Text": "Parliament may by law admit into the Union, or establish, new States on such terms and conditions as it thinks fit."
+          },
+          "Article 3": {
+            "Title": "Formation of new States and alteration of areas, boundaries or names of existing States",
+            "Text": "Parliament may by law form a new State by separation of territory, increase the area, diminish the area, alter the boundaries or alter the name of any State."
+          },
+          "Article 4": {
+            "Title": "Laws made under Articles 2 and 3 to provide for the amendment of the First and the Fourth Schedules and supplemental, incidental and consequential matters",
+            "Text": "Laws made for the admission or establishment of new States under Articles 2 and 3 shall contain provisions for amending the First and Fourth Schedules as necessary."
+          }
+        }
+      },
+      "Part II": {
+        "Title": "Citizenship",
+        "Articles": {
+          "Article 5": {
+            "Title": "Citizenship at the commencement of the Constitution",
+            "Text": "Persons who had their domicile in India at the commencement of the Constitution are considered citizens of India."
+          },
+          "Article 6": {
+            "Title": "Rights of citizenship of certain persons who have migrated to India from Pakistan",
+            "Text": "This article provides citizenship rights to persons who migrated from Pakistan before and after July 19, 1948, under specific conditions."
+          },
+          "Article 7": {
+            "Title": "Rights of citizenship of certain migrants to Pakistan",
+            "Text": "Persons who migrated from India to Pakistan after March 1, 1947, are not deemed citizens unless they return under certain conditions."
+          },
+          "Article 8": {
+            "Title": "Rights of citizenship of certain persons of Indian origin residing outside India",
+            "Text": "Persons of Indian origin residing outside India may register as citizens if they meet specified conditions."
+          },
+          "Article 9": {
+            "Title": "Persons voluntarily acquiring citizenship of a foreign State not to be citizens",
+            "Text": "Persons who voluntarily acquire foreign citizenship shall not be citizens of India."
+          },
+          "Article 10": {
+            "Title": "Continuance of the rights of citizenship",
+            "Text": "Every person who is a citizen of India shall continue to be such, subject to the provisions of any law made by Parliament."
+          },
+          "Article 11": {
+            "Title": "Parliament to regulate the right of citizenship by law",
+            "Text": "Parliament has the authority to make laws regarding the acquisition and termination of citizenship."
+          }
+        }
+      },
+      "Part III": {
+        "Title": "Fundamental Rights",
+        "Articles": {
+          "Article 12": {
+            "Title": "Definition of the State",
+            "Text": "Defines 'State' as including the Government and Parliament of India, the Government and Legislature of each State, and all local or other authorities."
+          },
+          "Article 13": {
+            "Title": "Laws inconsistent with or in derogation of the fundamental rights",
+            "Text": "All laws in force before the Constitution that are inconsistent with fundamental rights shall be void to the extent of inconsistency."
+          },
+          "Article 14": {
+            "Title": "Equality before law",
+            "Text": "The State shall not deny to any person equality before the law or equal protection of the laws."
+          },
+          "Article 15": {
+            "Title": "Prohibition of discrimination on grounds of religion, race, caste, sex or place of birth",
+            "Text": "The State shall not discriminate against any citizen on grounds only of religion, race, caste, sex, place of birth, or any of them."
+          },
+          "Article 16": {
+            "Title": "Equality of opportunity in matters of public employment",
+            "Text": "There shall be equality of opportunity for all citizens in matters relating to employment or appointment to any office under the State."
+          },
+          "Article 17": {
+            "Title": "Abolition of Untouchability",
+            "Text": "Untouchability is abolished, and its practice in any form is forbidden."
+          },
+          "Article 18": {
+            "Title": "Abolition of titles",
+            "Text": "No title, not being a military or academic distinction, shall be conferred by the State."
+          },
+          "Article 19": {
+            "Title": "Protection of certain rights regarding freedom of speech, etc.",
+            "Text": "All citizens shall have the right to freedom of speech and expression, assembly, association, movement, residence, and profession."
+          },
+          "Article 20": {
+            "Title": "Protection in respect of conviction for offences",
+            "Text": "No person shall be convicted of any offense except for violation of a law in force at the time of the commission of the act."
+          },
+          "Article 21": {
+            "Title": "Protection of life and personal liberty",
+            "Text": "No person shall be deprived of his life or personal liberty except according to the procedure established by law."
+          },
+          "Article 22": {
+            "Title": "Protection against arrest and detention in certain cases",
+            "Text": "This article provides rights for persons arrested or detained, including the right to be informed of reasons for arrest and the right to consult a lawyer."
+          },
+          "Article 23": {
+            "Title": "Prohibition of traffic in human beings and forced labour",
+            "Text": "Traffic in human beings, begar, and other similar forms of forced labor are prohibited."
+          },
+          "Article 24": {
+            "Title": "Prohibition of employment of children in factories, etc.",
+            "Text": "No child below the age of 14 years shall be employed to work in any factory or mine or engaged in hazardous employment."
+          },
+          "Article 25": {
+            "Title": "Freedom of conscience and free profession, practice, and propagation of religion",
+            "Text": "All persons are equally entitled to freedom of conscience and the right to freely profess, practice, and propagate religion."
+          },
+          "Article 26": {
+            "Title": "Freedom to manage religious affairs",
+            "Text": "Every religious denomination has the right to establish and maintain institutions for religious purposes."
+          },
+          "Article 27": {
+            "Title": "Freedom as to payment of taxes for promotion of any particular religion",
+            "Text": "No person shall be compelled to pay taxes for the promotion or maintenance of any particular religion."
+          },
+          "Article 28": {
+            "Title": "Freedom as to attendance at religious instruction or religious worship in certain educational institutions",
+            "Text": "No religious instruction shall be provided in any educational institution wholly funded by the State."
+          },
+          "Article 29": {
+            "Title": "Protection of interests of minorities",
+            "Text": "Any section of citizens having a distinct language, script, or culture has the right to conserve the same."
+          },
+          "Article 30": {
+            "Title": "Right of minorities to establish and administer educational institutions",
+            "Text": "Religious or linguistic minorities have the right to establish and administer educational institutions of their choice."
+          },
+          "Article 31": {
+            "Title": "Repealed",
+            "Text": "Repealed by the 44th Amendment Act, 1978."
+          },
+          "Article 32": {
+            "Title": "Right to Constitutional Remedies",
+            "Text": "The right to move the Supreme Court for the enforcement of fundamental rights is guaranteed."
+          },
+          "Article 33": {
+            "Title": "Power of Parliament to modify the rights conferred by this Part in their application to Forces, etc.",
+            "Text": "Parliament may restrict or abrogate the application of fundamental rights for members of armed forces or others serving the country."
+          },
+          "Article 34": {
+            "Title": "Restriction on rights conferred by this Part while martial law is in force in any area",
+            "Text": "While martial law is in force, the rights in this Part may be restricted in that area."
+          },
+          "Article 35": {
+            "Title": "Legislation to give effect to the provisions of this Part",
+            "Text": "Parliament has the power to make laws to give effect to certain specified fundamental rights."
+          }
+        }
+      },
+      "Part IV": {
+        "Title": "Directive Principles of State Policy",
+        "Articles": {
+          "Article 36": {
+            "Title": "Definition",
+            "Text": "Defines 'the State' for the purposes of this Part as including the Government and Parliament of India, the Government and Legislature of each of the States, and all other authorities within the territory of India."
+          },
+          "Article 37": {
+            "Title": "Application of the principles contained in this Part",
+            "Text": "The provisions in this Part are not enforceable by any court, but are fundamental to the governance of the country."
+          },
+          "Article 38": {
+            "Title": "State to secure a social order for the promotion of welfare of the people",
+            "Text": "The State shall strive to promote the welfare of the people by securing a social order in which justice, social, economic, and political, shall inform all institutions."
+          },
+          "Article 39": {
+            "Title": "Certain principles of policy to be followed by the State",
+            "Text": "The State shall, in particular, direct its policy towards securing adequate means of livelihood, equitable distribution of resources, and protection of childhood and youth."
+          },
+          "Article 40": {
+            "Title": "Organisation of village panchayats",
+            "Text": "The State shall take steps to organise village panchayats and endow them with powers and authority to function as units of self-government."
+          },
+          "Article 41": {
+            "Title": "Right to work, to education and to public assistance in certain cases",
+            "Text": "The State shall make effective provisions for securing the right to work, education, and public assistance in cases of unemployment, old age, sickness, and disablement."
+          },
+          "Article 42": {
+            "Title": "Provision for just and humane conditions of work and maternity relief",
+            "Text": "The State shall make provision for securing just and humane conditions of work and for maternity relief."
+          },
+          "Article 43": {
+            "Title": "Living wage, etc., for workers",
+            "Text": "The State shall endeavor to secure a living wage and decent conditions of work for all workers."
+          },
+          "Article 44": {
+            "Title": "Uniform civil code for the citizens",
+            "Text": "The State shall endeavor to secure for the citizens a uniform civil code throughout the territory of India."
+          },
+          "Article 45": {
+            "Title": "Provision for free and compulsory education for children",
+            "Text": "The State shall provide free and compulsory education for children until they complete the age of fourteen years."
+          },
+          "Article 46": {
+            "Title": "Promotion of educational and economic interests of Scheduled Castes, Scheduled Tribes and other weaker sections",
+            "Text": "The State shall promote educational and economic interests of the weaker sections of the society."
+          },
+          "Article 47": {
+            "Title": "Duty of the State to raise the level of nutrition and the standard of living and to improve public health",
+            "Text": "The State shall regard raising the level of nutrition and improving public health as among its primary duties."
+          },
+          "Article 48": {
+            "Title": "Organisation of agriculture and animal husbandry",
+            "Text": "The State shall endeavor to organise agriculture and animal husbandry on modern and scientific lines."
+          },
+          "Article 49": {
+            "Title": "Protection of monuments and places and objects of national importance",
+            "Text": "It shall be the obligation of the State to protect every monument or place or object of artistic or historic interest."
+          },
+          "Article 50": {
+            "Title": "Separation of judiciary from executive",
+            "Text": "The State shall take steps to separate the judiciary from the executive in the public services of the State."
+          },
+          "Article 51": {
+            "Title": "Promotion of international peace and security",
+            "Text": "The State shall endeavor to promote international peace and security, respect for international law, and foster relations with other nations."
+          }
+        }
+      },
+      "Part IVA": {
+        "Title": "Fundamental Duties",
+        "Articles": {
+          "Article 51A": {
+            "Title": "Fundamental duties",
+            "Text": "It shall be the duty of every citizen of India to abide by the Constitution, respect its ideals and institutions, the National Flag, and the National Anthem."
+          }
+        }
+      },
+      "Part V": {
+        "Title": "The Union",
+        "Articles": {
+          "Article 52": {
+            "Title": "The President of India",
+            "Text": "There shall be a President of India."
+          },
+          "Article 53": {
+            "Title": "Executive power of the Union",
+            "Text": "The executive power of the Union shall be vested in the President."
+          },
+          "Article 54": {
+            "Title": "Election of President",
+            "Text": "The President shall be elected by the members of an electoral college consisting of elected members of both Houses of Parliament and Legislative Assemblies of States."
+          },
+          "Article 55": {
+            "Title": "Manner of election of President",
+            "Text": "The election of the President shall be in accordance with the system of proportional representation by means of a single transferable vote."
+          },
+          "Article 56": {
+            "Title": "Term of office of President",
+            "Text": "The President shall hold office for a term of five years."
+          },
+          "Article 57": {
+            "Title": "Eligibility for re-election",
+            "Text": "A person who holds, or has held, office as President shall be eligible for re-election."
+          },
+          "Article 58": {
+            "Title": "Qualifications for election as President",
+            "Text": "A person shall be eligible for election as President if he is a citizen of India, has completed 35 years of age, and is qualified for election as a member of the House of the People."
+          },
+          "Article 59": {
+            "Title": "Conditions of President's office",
+            "Text": "The President shall not be a member of either House of Parliament or of a House of the Legislature of any State."
+          },
+          "Article 60": {
+            "Title": "Oath or affirmation by the President",
+            "Text": "The President shall take an oath or make an affirmation to faithfully execute the office and preserve, protect, and defend the Constitution and the law."
+          },
+          "Article 61": {
+            "Title": "Procedure for impeachment of the President",
+            "Text": "The President may be impeached for violation of the Constitution in accordance with the process laid down."
+          },
+          "Article 62": {
+            "Title": "Time of holding election to fill vacancy in the office of President",
+            "Text": "An election to fill a vacancy caused by the expiration of the term of office of President shall be completed before the expiration of the term."
+          },
+          "Article 63": {
+            "Title": "The Vice-President of India",
+            "Text": "There shall be a Vice-President of India."
+          },
+          "Article 64": {
+            "Title": "The Vice-President to be ex-officio Chairman of the Council of States",
+            "Text": "The Vice-President shall be ex-officio Chairman of the Council of States."
+          },
+          "Article 65": {
+            "Title": "The Vice-President to act as President or to discharge his functions during casual vacancies",
+            "Text": "The Vice-President shall act as President in the event of a vacancy in the office of the President."
+          },
+          "Article 66": {
+            "Title": "Election of Vice-President",
+            "Text": "The Vice-President shall be elected by the members of an electoral college consisting of the members of both Houses of Parliament."
+          },
+          "Article 67": {
+            "Title": "Term of office of Vice-President",
+            "Text": "The Vice-President shall hold office for a term of five years."
+          },
+          "Article 68": {
+            "Title": "Time of holding election to fill vacancy in the office of Vice-President",
+            "Text": "An election to fill a vacancy in the office of Vice-President shall be held as soon as possible."
+          },
+          "Article 69": {
+            "Title": "Oath or affirmation by the Vice-President",
+            "Text": "The Vice-President shall take an oath or affirmation to bear true faith and allegiance to the Constitution of India."
+          },
+          "Article 70": {
+            "Title": "Discharge of President's functions in other contingencies",
+            "Text": "Parliament may make such provisions as it thinks fit for the discharge of the functions of the President in any contingency not expressly provided for in the Constitution."
+          }
+        }
+      }
+    }
+  }
+}
