@@ -17,34 +17,26 @@ with open('final_database_v1.json', 'r') as file:
 
 
 def preprocess_query(query):
-    # Extract specific article number from query
-    match = re.search(r'\barticle (\d+)\b', query, re.IGNORECASE)
-    if match:
-        return f"Article {match.group(1)}"  # Normalize to "Article X" format
-    return query  # Return original query if no match
-
+    # Ensure exact format (e.g., Article 1)
+    match = re.match(r'\bArticle \d+\b', query, re.IGNORECASE)
+    return match.group(0) if match else query  # Return exact match or original query
 
 
 
 def keyword_search(query, names):
     keyword_results = []
-    # Extract specific article number if present
-    match = re.search(r'\barticle (\d+)\b', query, re.IGNORECASE)
-    article_number = match.group(1) if match else None
+    # Create regex pattern for exact match
+    pattern = re.compile(fr'\b{re.escape(query)}\b', re.IGNORECASE)
 
     for item in names:
         keyword_score = 0
 
-        # Check for exact article match
-        if article_number and f"Article {article_number}" == item["name"]:
-            keyword_score += 5  # Assign higher score for exact matches
-
         # Check for regex match in name, title, and description
-        if query.lower() in item['name'].lower():
+        if pattern.search(item['name']):
             keyword_score += 1
-        if query.lower() in item['title'].lower():
+        if pattern.search(item['title']):
             keyword_score += 1
-        if query.lower() in item['description'].lower():
+        if pattern.search(item['description']):
             keyword_score += 1
 
         if keyword_score > 0:  # Only consider matches with a score
@@ -61,7 +53,6 @@ def keyword_search(query, names):
     return keyword_results
 
 
-
 # Create list of names for keyword indexing (BM25)
 index_data = [{"name": name["name"], "title": name["title"], "description": name["description"]} for name in names]
 
@@ -72,22 +63,20 @@ name_embeddings = semantic_model.encode(name_texts, convert_to_tensor=True)
 
 
 def hybrid_search(query, weight_keyword, weight_semantic):
-    # Preprocess query to normalize and extract specific article number
+    
+    # Preprocess query for exact match format
     processed_query = preprocess_query(query)
-    match = re.search(r'\barticle (\d+)\b', processed_query, re.IGNORECASE)
-    article_number = match.group(1) if match else None
-
-    # Perform keyword-based search
-    keyword_results = keyword_search(processed_query, names)
-
-    # Perform semantic search
+    # Perform keyword-based search using BM25
+    keyword_results = keyword_search(processed_query, names)  # Top 5 results based on keyword matching
+    print(keyword_results)
+    # Perform semantic search using LLM embeddings
     query_embedding = semantic_model.encode([processed_query], convert_to_tensor=True)
     similarities = cosine_similarity(query_embedding, name_embeddings)
-    semantic_results_indices = similarities.argsort()[0][-10:][::-1]  # Top 10 results
-
+    semantic_results_indices = similarities.argsort()[0][-10:][::-1]  # Top 5 results based on semantic similarity
+    # Combine results
     results = {}
-
-    # Process keyword-based results
+    
+    # Process BM25 keyword-based results
     for name in keyword_results:
         results[name["name"]] = {
             "name": name["name"],
@@ -101,12 +90,8 @@ def hybrid_search(query, weight_keyword, weight_semantic):
     for idx in semantic_results_indices:
         name = names[idx]
         semantic_score = similarities[0][idx] * weight_semantic  # Adjust score by weight
-
-        # If the query contains an article number, filter semantic results
-        if article_number and f"Article {article_number}" != name["name"]:
-            continue  # Skip non-matching articles
-
-        # Add or merge results
+        
+        # Check if the name is already in the results and if the semantic score is better
         if name["name"] not in results:
             results[name["name"]] = {
                 "name": name["name"],
@@ -116,12 +101,11 @@ def hybrid_search(query, weight_keyword, weight_semantic):
                 "score": semantic_score
             }
         else:
-            # Merge scores
+            # If name is in both, you can merge or compare scores
             existing_score = results[name["name"]]["score"]
-            results[name["name"]]["score"] = max(existing_score, semantic_score)
+            results[name["name"]]["score"] = max(existing_score, semantic_score)  # Take the best score
 
-    # Sort combined results by score
+    # Sort the combined results by score (highest to lowest)
     sorted_results = sorted(results.values(), key=lambda x: x['score'], reverse=True)
-
+    
     return sorted_results
-
