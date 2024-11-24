@@ -61,8 +61,8 @@ __Step 8:___ Run the Server
 ```bash
 python manage.py runserver
 ```
-- To stop the server, just press `Ctrl+C`.
-__Note:__ To deactivate the Virtual Enviroment
+- To stop the server, just press `Ctrl+C`.  
+- __Note:__ To deactivate the Virtual Enviroment
 ```bash
 deactivate
 ```
