@@ -78,7 +78,7 @@
                 Welcome to Our Website
               </h2>
               <p data-aos="fade-up" data-aos-delay="200">
-                Educate Yourself, Empower the Nation – Search India's Constitution.
+                Educate Yourself, Know the Foundation – Search India's Constitution.
               </p>
             </div>
             <div class="col-lg-5" data-aos="fade-up" data-aos-delay="300">
@@ -151,9 +151,9 @@
                 <div class="col-md-6">
                   <div class="info-item" data-aos="fade" data-aos-delay="500">
                     <i class="bi bi-clock"></i>
-                    <h3>Closed Hours</h3>
-                    <p>We are closed on</p>
-                    <p>all Sundays</p>
+                    <h3>Open Hours</h3>
+                    <p>Monday-Friday</p>
+                    <p>9 AM - 6 PM</p>
                     
                   </div>
                 </div>
@@ -218,7 +218,7 @@
                       Your message has been sent. Thank you!
                     </div> -->
 
-                    <button type="submit" onclick="sendEmail()">Send Message</button>
+                    <button type="submit" onclick="sendEmail()">Send Message</a></button>
                   </div>
                 </div>
               </form>
@@ -245,8 +245,17 @@
                 )}`;
           
                 // Open the email client
-                window.location.href = mailtoLink;
-              }
+                // Create a new anchor element
+                const link = document.createElement('a');
+                link.href = mailtoLink;
+                link.target = '_blank'; // This ensures it opens in a new tab
+                link.rel = 'noopener noreferrer'; // Adds security and performance enhancement
+
+                // Programmatically click the anchor element
+                document.body.appendChild(link); // Add it temporarily to the DOM
+                link.click();
+                document.body.removeChild(link); // Remove it after the click
+                }
             </script>
 
 
