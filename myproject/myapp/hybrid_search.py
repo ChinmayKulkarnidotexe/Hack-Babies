@@ -1,4 +1,3 @@
-from txtai import Embeddings
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 import json
@@ -26,8 +25,6 @@ ABBREVIATIONS = {
 }
 
 
-# Initialize the BM25 index with txtai
-keyword_index = Embeddings()
 
 # Initialize the sentence transformer model for semantic search
 semantic_model = SentenceTransformer('all-MiniLM-L6-v2')
