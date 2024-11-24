@@ -5,7 +5,11 @@ import re
 from nltk.corpus import stopwords
 
 STOPWORDS = set(stopwords.words('english'))
-RESTRICTED_WORDS = ['say','says','about','means','mean','a', "an", "the", "on", "in", "at", "by", "to", "of", "for", "with", "about", 
+REMOVED_STOPWORDS = ['of']
+for word in REMOVED_STOPWORDS:
+    STOPWORDS.discard(word)
+
+RESTRICTED_WORDS = ['say','says','about','means','mean','a', "an", "the", "on", "in", "at", "by", "to", "for", "with", "about", 
     "into", "onto", "upon", "from", "over", "under", "through", "between", 
     "and", "or", "but", "so", "yet", "nor", "either", "neither", "both", 
     "it", "its", "they", "them", "he", "she", "him", "her", "this", "that", 
@@ -16,7 +20,7 @@ RESTRICTED_WORDS = ['say','says','about','means','mean','a', "an", "the", "on", 
     "then", "now", "states", "describe", "explain", "define", 
     "what", "does", "any", "please", "tell", "give", "list", "related to", 
     "about", "according to", "what does", "what is", "can you", "tell me", 
-    "give me", "list all"]
+    "give me", "list all", '?','??','???']
 ABBREVIATIONS = {
     "mva": "motor vehicles act",
     "nia": "negotiable instruments act",
