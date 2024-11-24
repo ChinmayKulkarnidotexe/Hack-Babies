@@ -35,7 +35,7 @@ git clone https://github.com/AbhinavDShetty/Hack-Babies.git
 ```
 __Step 2:__ Navigate to project directory
 ```bash
-cd Hack-Babies
+cd Hack-Babies\myproject
 ```
 __Step 3:__ Install VirtualEnvWrapper
 ```bash
@@ -53,7 +53,11 @@ __Step 6:__ Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
-__Step 7:___ Run the Server
+__Step 7:__ Run the run_me.py
+```bash
+python run_me.py
+```
+__Step 8:___ Run the Server
 ```bash
 python manage.py runserver
 ```
@@ -82,7 +86,7 @@ Hack-Babies/
 	├──myproject/
 	│	├──dump files
 	│	├──myapp/
-	│	│	├──hybrid_search.py			# Pre-trained model for semantic search
+	│	│	├──hybrid_search.py		# Pre-trained model for semantic search
 	│	│	├──urls.py
 	│	│	└──views.py
 	│	├──myproject/
@@ -96,9 +100,9 @@ Hack-Babies/
 	│	├──final_database_v1.json		# The database of laws and articles
 	│	├──Flowchart.png
 	│	├──manage.py
+	│	├── requirements.txt			# Dependencies
 	│	└──run_me.py
-	├──.gitattributes
-	├── requirements.txt                # Dependencies
+	├──.gitattributes              
 	└── README.md  
 ```
 
