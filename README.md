@@ -126,4 +126,5 @@ Feel free to reach out with feedback or suggestions. Let's make legal informatio
 ## Acknowledgements
 
  - [Awesome Website Templates](https://bootstrapmade.com)
+ - [Reference for Database](https://github.com/civictech-India/Indian-Law-Penal-Code-Json)
 
