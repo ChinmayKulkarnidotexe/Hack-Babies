@@ -1,7 +1,7 @@
 
 # Hack-Babies
 
-Welcome to the **Hack Babies** project! This repository provides a robust search system for querying laws and articles from the Indian Constitution. Leveraging **semantic search** and **keyword-based search**, the project ensures users can find relevant legal texts effectively and intuitively.
+Welcome to the **LegalLens** project! This repository provides a robust search system for querying laws and articles from the Indian Constitution. Leveraging **semantic search** and **keyword-based search**, LegalLens ensures users can find relevant legal texts effectively and intuitively.
 
 ## Table of Contents
 - [Features](#features)
@@ -57,7 +57,7 @@ __Step 7:__ Run the run_me.py
 ```bash
 python run_me.py
 ```
-__Step 8:___ Run the Server
+__Step 8:__ Run the Server
 ```bash
 python manage.py runserver
 ```
