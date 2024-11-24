@@ -141,5 +141,19 @@
 })();
 
 function toggleExpand(element) {
-  element.classList.toggle("expanded");
+  const searchItemBox = element.closest(".search-item-box");
+  searchItemBox.classList.toggle("expanded");
+
+  // Find the <i> element within the expand-button
+  const icon = element.querySelector("i");
+
+  // Toggle the icon class
+  if (icon.classList.contains("bi-arrow-down-short")) {
+    icon.classList.remove("bi-arrow-down-short");
+    icon.classList.add("bi-arrow-up-short");
+  } 
+  else {
+    icon.classList.remove("bi-arrow-up-short");
+    icon.classList.add("bi-arrow-down-short");
+  }
 }

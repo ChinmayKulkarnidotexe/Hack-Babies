@@ -514,9 +514,9 @@ section,
 }
 
 
-/*
+/*--------------------
   Search Items section
-*/
+----------------------*/
 
 .search-item-container{
   display: flex;
@@ -543,17 +543,18 @@ section,
   overflow: hidden;
   box-shadow: 5px 10px 50px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  transition: max-height 3s ease-out;
+  transition: max-height 5s ease-out, height 5s ease-out;
   margin: 5px auto 10px auto;
   padding: 2px;
   font-family: var(--default-font);
   background-color: white;
-  cursor: pointer;
+  position: relative;
   
 }
 
 .search-item-box.expanded{
-  max-height: 1000px; 
+  max-height: 2500px;
+  height: auto; 
   
 }
 
@@ -567,6 +568,7 @@ section,
   display: block;
   opacity: 1;
 }
+
 .search-item-box h3{
   padding-top: 20px;
   font-family: var(--heading-font);
@@ -584,5 +586,37 @@ section,
   padding-bottom: 8px;
   padding-right: 2%;
   text-align: left;
+}
+
+
+/*-----------------------
+ # Expand Button
+------------------------*/
+
+.expand-button {
+  visibility: visible;
+  opacity: 1;
+  right: 20px;
+  margin-top: 31px;
+  z-index: 100;
+  background-color: #007D9B;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: all 0.5s;
+  position: absolute;
+}
+
+.expand-button i {
+  font-size: 24px;
+  color: var(--contrast-color);
+  line-height: 40px; 
+  text-align: center;
+  display: block;
+}
+
+.expand-button:hover {
+  background-color: color-mix(in srgb, var(--accent-color), transparent 20%);
+  color: var(--contrast-color);
 }
 

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>BharatiyaSamvidhan</title>
+    <title>LegalLens</title>
     <meta name="result.info" content="" />
     <meta name="keywords" content="" />
 
@@ -54,7 +54,7 @@
           href="index.html"
           class="logo d-flex align-items-center me-auto me-xl-0"
         >
-          <h1 class="sitename">HackBabies</h1>
+          <h1 class="sitename">LegalLens</h1>
           <span>.</span>
         </a>
 
@@ -99,13 +99,10 @@
       <!-- /Hero Section -->
     </main>
     {% if query %} {% for result in results %} {% if forloop.first %}
-    <div
-      class="search-item-container-main"
-      data-aos="fade-down"
-      data-aos-offset="0"
-      data-aos-duration="500"
-    >
-      <div class="search-item-box" onclick="toggleExpand(this)">
+    <div class="search-item-container-main" data-aos="fade-down" data-aos-offset="0" data-aos-duration="500" >
+     
+      <div class="search-item-box" >
+        <div class="expand-button" onclick="toggleExpand(this)"><i class="bi bi-arrow-down-short"></i></div>
         <ul>
           {% if result.title|safe == 'Preamble' %}
           <h3>Preamble</h3>
@@ -125,7 +122,8 @@
       data-aos-offset="0"
       data-aos-duration="500"
     >
-      <div class="search-item-box" onclick="toggleExpand(this)">
+      <div class="search-item-box" >
+        <div class="expand-button"onclick="toggleExpand(this)"><i class="bi bi-arrow-down-short"></i></div>
         <ul>
           <h3>{{ result.name|safe }}</h3>
           <li class="search-item">{{ result.title|safe }}</li>
@@ -148,6 +146,54 @@
       </div>
     </div>
     {% endif %}
+
+    <footer id="footer" class="footer position-relative light-background">
+      <div class="container footer-top">
+        <div class="row gy-4">
+          <div class="col-lg-5 col-md-12 footer-about">
+            <a href="index.html" class="logo d-flex align-items-center">
+              <span class="sitename">Hack Babies</span>
+            </a>
+            <p>
+              We tried to make this website as clear as Article 1, but don't blame us if you get 'amended' into curiosity!<br/><br/>For more information, Visit the offical government pages
+            </p>
+            
+            <div class="social-links d-flex mt-4">
+              
+              <a href="https://x.com/mygovindia?lang=en" target="_blank" rel="noopener noreferrer"><i class="bi bi-twitter-x"></i></a>
+              <a href="https://www.facebook.com/MyGovIndia/" target="_blank" rel="noopener noreferrer"><i class="bi bi-facebook"></i></a>
+              <a href="https://www.instagram.com/mygovindia/" target="_blank" rel="noopener noreferrer"><i class="bi bi-instagram"></i></a>
+              <a href="https://in.linkedin.com/company/government-of-india" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="https://legislative.gov.in/constitution-of-india" target="_blank" rel="noopener noreferrer">Constitution of India</a></li>
+              <li><a href="https://sci.gov.in/" target="_blank" rel="noopener noreferrer">Supreme Court Judgments</a></li>
+              <li><a href="https://prsindia.org/" target="_blank" rel="noopener noreferrer">PRS Legislative Research</a></li>
+              <li><a href="https://nalsa.gov.in/" target="_blank" rel="noopener noreferrer">National Legal Services Authority</a></li>
+            </ul>
+          </div>
+
+          <div
+            class="col-lg-3 col-md-12 footer-contact text-center text-md-start"
+          >
+            <h4>Contact Us</h4>
+            <p>NMAMIT, Nitte, SH1</p>
+            <p>Karkala, Karnataka-574110</p>
+            
+            <p class="mt-4">
+              <strong>Phone:</strong> <span>+91 9141038503</span>
+            </p>
+            <p><strong>Email:</strong> <span>arjunhassan06@gmail.com</span></p>
+          </div>
+        </div>
+      </div>
+
+    </footer>
 
     <!-- Scroll Top -->
     <a
