@@ -8,6 +8,7 @@ Welcome to the **Hack Babies** project! This repository provides a robust search
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Flowchart](#flowchart)
 - [Project Structure](#project-structure)
 - [Technologies Used](#technologies-used)
 - [Acknowledgements](#acknowledgements)
@@ -70,6 +71,10 @@ deactivate
 4. Review the results, which will list relevant laws or articles from the Indian   Constitution.  
 
 ---
+## Flowchart
+![Flowchart](myproject/Flowchart.jpg)
+---
+
 ## Project Structure
 
 ```
