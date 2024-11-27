@@ -3,6 +3,9 @@ from sklearn.metrics.pairwise import cosine_similarity
 import json
 import re
 from nltk.corpus import stopwords
+import nltk
+nltk.download('stopwords')
+nltk.download('words')
 
 STOPWORDS = set(stopwords.words('english'))
 REMOVED_STOPWORDS = ['of']
